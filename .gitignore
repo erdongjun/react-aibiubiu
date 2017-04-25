@@ -1,0 +1,4 @@
+
+#忽略提交的相关配置
+node_modules
+build/bundle.js
