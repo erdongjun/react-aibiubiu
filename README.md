@@ -1,2 +1,2 @@
 # react-aibiubiu
-my project
+react+webpack 脚手架配置
