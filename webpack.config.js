@@ -1,37 +1,78 @@
-var path = require('path');
+var path = require('path')
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
-var entry = path.resolve(__dirname, 'app/index.js');
-var outpath = path.resolve(__dirname, 'build');
-
+// var nodeModulesPath = path.resolve(__dirname, 'node_modules')
+// console.log(process.env.NODE_ENV)
 
 module.exports = {
-    devtool: 'eval-source-map',
-    entry: entry,
+    entry: path.resolve(__dirname, 'app/index.jsx'),
     output: {
-        path: outpath,
-        filename: 'bundle.js',
+        path: __dirname + "/build",
+        filename: "bundle.js"
     },
-    devServer: {
-        contentBase: './build',//默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录（本例设置到"build"目录）
-        historyApiFallback: true,//在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
-        inline: true,//设置为true，当源文件改变时会自动刷新页面
-        port: 8080,//设置默认监听端口，如果省略，默认为"8080"
+
+    resolve:{
+        extensions:['', '.js','.jsx']
     },
+
     module: {
-      loaders: [
-            {
-                test: /\.(js|jsx)$/,//一个匹配loaders所处理的文件的拓展名的正则表达式，这里用来匹配js和jsx文件（必须）
-                exclude: /node_modules/,//屏蔽不需要处理的文件（文件夹）（可选）
-                loader: 'babel'//loader的名称（必须）
-            },
-            {
-              test: /\.less$/,
-              loader: 'style!css!less'
-            },
-            {
-              test: /\.(png|jpg)$/,
-              loader: 'url?limit=25000'
-            }
-      ],
+        // preLoaders: [
+        //     // 报错 ？？？？？
+        //     {test: /\.(js|jsx)$/, loader: "eslint-loader", exclude: /node_modules/}
+        // ],
+        loaders: [
+            { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel' },
+            { test: /\.less$/, exclude: /node_modules/, loader: 'style!css!postcss!less' },
+            { test: /\.css$/, exclude: /node_modules/, loader: 'style!css!postcss' },
+            { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000' },  // 限制大小5kb
+            { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000'} // 限制大小小于5k
+        ]
+    },
+
+    eslint: {
+        configFile: '.eslintrc' // Rules for eslint
+    },
+
+    postcss: [
+        require('autoprefixer') //调用autoprefixer插件，例如 display: flex
+    ],
+
+    plugins: [
+        // html 模板插件
+        new HtmlWebpackPlugin({
+            template: __dirname + '/app/index.tmpl.html'
+        }),
+
+        // 热加载插件
+        new webpack.HotModuleReplacementPlugin(),
+
+        // 打开浏览器
+        new OpenBrowserPlugin({
+          url: 'http://localhost:8080'
+        }),
+
+        // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
+        new webpack.DefinePlugin({
+          __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
+        })
+    ],
+
+    devServer: {
+        proxy: {
+          // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
+          // koa 代码在 ./mock 目录中，启动命令为 npm run mock
+          '/api': {
+            target: 'http://localhost:3000',
+            secure: false
+          }
+        },
+        contentBase: "./public", //本地服务器所加载的页面所在的目录
+        colors: true, //终端中输出结果为彩色
+        historyApiFallback: true, //不跳转
+        inline: true, //实时刷新
+        hot: true  // 使用热加载插件 HotModuleReplacementPlugin
     }
-};
+}
