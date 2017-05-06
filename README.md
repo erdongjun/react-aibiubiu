@@ -20,12 +20,10 @@ webpack+react相关配置
 
 
 
-###########目录结构描述
+目录结构描述
 
 
-
- app   						 源码
-                        
+ 	app   						 源码
     actions					 redux action 方法
     components               通用组件
     constants        		 redux 组件状态
@@ -39,16 +37,15 @@ webpack+react相关配置
     index.js         		 项目加载入口
    	index.tmpl.html          打包生成的index.htmld的模板文件
 
- build						 编译打包的目标文件夹
- docs                         文档
- mock                         模拟接口相关
- test                         测试相关
- node_modules           		 开发依赖
- package.json        
- README.md                    项目相关说明        
- webpack.config.js            webpack开发配置文件
- webpack.production.config.js   webpack打包配置文件
-
+	build						 编译打包的目标文件夹
+	docs                         文档
+	mock                         模拟接口相关
+	test                         测试相关
+	node_modules           		 开发依赖
+	package.json        
+	README.md                    项目相关说明        
+	webpack.config.js            webpack开发配置文件
+	webpack.production.config.js   webpack打包配置文件
 
 
 
