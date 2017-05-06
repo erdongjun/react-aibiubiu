@@ -1,0 +1,13 @@
+
+{
+  "extraBabelPlugins": [
+    "transform-runtime",
+  ],
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+      ]
+    }
+  }
+}

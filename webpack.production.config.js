@@ -31,7 +31,7 @@ module.exports = {
   module: {
     loaders: [
         { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel' },
-        { test: /\.less$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style', 'css!postcss!less') },
+        { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!less') },
         { test: /\.css$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
         { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000&name=img/[name].[chunkhash:8].[ext]' },
         { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000&name=fonts/[name].[chunkhash:8].[ext]'}
@@ -43,7 +43,7 @@ module.exports = {
 
   plugins: [
     // webpack 内置的 banner-plugin
-    new webpack.BannerPlugin("Copyright by wangfupeng1988@github.com."),
+    new webpack.BannerPlugin("Copyright by Davau@github.com."),
 
     // html 模板插件
     new HtmlWebpackPlugin({

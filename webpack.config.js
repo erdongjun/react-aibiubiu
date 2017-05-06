@@ -25,7 +25,7 @@ module.exports = {
         // ],
         loaders: [
             { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel' },
-            { test: /\.less$/, exclude: /node_modules/, loader: 'style!css!postcss!less' },
+            { test: /\.less$/,  loader: 'style!css!postcss!less' },
             { test: /\.css$/, exclude: /node_modules/, loader: 'style!css!postcss' },
             { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000' },  // 限制大小5kb
             { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000'} // 限制大小小于5k
@@ -45,7 +45,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: __dirname + '/app/index.tmpl.html'
         }),
-
         // 热加载插件
         new webpack.HotModuleReplacementPlugin(),
 
@@ -59,7 +58,6 @@ module.exports = {
           __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
         })
     ],
-
     devServer: {
         proxy: {
           // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。

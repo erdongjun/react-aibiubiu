@@ -1,5 +1,9 @@
-import React from 'react'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+import { Button } from 'antd';
+
+
 
 class Home extends React.Component {
     constructor(props, context) {
@@ -9,7 +13,8 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <h1>home是打算</h1>
+                <h1>home是打算sas</h1>
+                <Button type="primary">Primary</Button>
             </div>
         )
     }
