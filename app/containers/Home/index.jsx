@@ -1,8 +1,8 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { Button } from 'antd';
-
+// 通用组件
+import BannerSlider from './subpage/BannerSlider';
 
 
 class Home extends React.Component {
@@ -13,8 +13,8 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <h1>home是打算sas</h1>
-                <Button type="primary">Primary</Button>
+                 <BannerSlider />
+                 <div className='iconfont icon-closev'>1111</div>
             </div>
         )
     }

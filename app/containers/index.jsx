@@ -1,5 +1,8 @@
 import React from 'react'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+// 组件依赖
+import HomeLayout from '../components/Layout/Layout.js';
+
 
 class App extends React.Component {
     constructor(props, context) {
@@ -8,9 +11,9 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div>
+             <HomeLayout>
                 {this.props.children}
-            </div>
+            </HomeLayout>
         )
     }
 }
