@@ -24,18 +24,18 @@ webpack+react相关配置
 
 
  	app   						 源码
-    actions					 redux action 方法
-    components               通用组件
-    constants        		 redux 组件状态
-    containers               页面组件
-    fetch             		 异步数据请求
-    reducers         		 数据处理
-    router               	 路由配置
-    static         			 web静态资源
-    store            		 redux 数据集合
-    util       				 核心方法类
-    index.js         		 项目加载入口
-   	index.tmpl.html          打包生成的index.htmld的模板文件
+	    actions					 redux action 方法
+	    components               通用组件
+	    constants        		 redux 组件状态
+	    containers               页面组件
+	    fetch             		 异步数据请求
+	    reducers         		 数据处理
+	    router               	 路由配置
+	    static         			 web静态资源
+	    store            		 redux 数据集合
+	    util       				 核心方法类
+	    index.js         		 项目加载入口
+	   	index.tmpl.html          打包生成的index.htmld的模板文件
 
 	build						 编译打包的目标文件夹
 	docs                         文档
