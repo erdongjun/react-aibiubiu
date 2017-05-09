@@ -1,0 +1,184 @@
+// banner
+.banner{
+	text-align: center;
+  	height: 370px;
+  	background: #364d79;
+  	color: #fff;
+	border-radius: 4px;
+	width: 490px;
+	float: left;
+
+}
+// cate
+.cateList{
+	width: 510px;
+	height: 370px;
+	float: left;
+	overflow: hidden;
+	.cateItem{
+		position: relative;
+		float: left;
+		overflow: hidden;
+		border-radius: 4px;
+		width: 240px;
+		height: 177px;
+		margin-left: 15px;
+		margin-bottom: 16px;
+		.tip{
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 2;
+			text-align: center;
+			p{
+				font-size: 14px;
+				color: #fff;
+				margin-top: 15px;
+			}
+		}
+		.bg{
+			display: block;
+			width: 240px;
+			height: 180px;
+		}
+		.icon{
+			margin: 0 auto;
+			margin-top: 30px;
+			display: block;
+			width: 66px;
+			height: 71px;
+		}
+	}
+
+}
+// recommened
+.recommendBox{
+	.title{
+	    margin-bottom: 12px;
+	    height: 32px;
+	    padding-left: 50px;
+	    position: relative;
+	    line-height: 42px;
+	    .relogo{
+	    	width: 40px;
+	    	height: 35px;
+	    	display: block;
+	    	position: absolute;
+	    	left: 5px;
+	    	top: -4px;
+	    }
+	    .subtitle{
+	    	padding:0 15px ;
+		    color: #ffb105;
+		    font-size: 16px;
+		    letter-spacing: 3px;
+	    }
+	    .desc{
+	    	color: #87888d;
+    		font-size: 12px;
+	    }
+	    .more{
+	    	position: relative;
+		    float: right;
+		    height: 30px;
+		    width: 108px;
+		    line-height: 30px;
+		    padding-left: 16px;
+		    color: #555;
+		    font-size: 14px;
+		    cursor: pointer;
+		    border-radius: 15px;
+		    &:hover{
+		    	background: #f1f1f1	;
+		    }
+
+		    .rateicon{
+		    	position: absolute;
+			    left: 78px;
+			    top: 4px;
+			    width: 22px;
+			    transition: all 1s ease 0s;
+    			z-index: 2;
+
+			    &:hover{
+					transform:rotate(-360deg);
+			    }
+		    }
+	    }
+	}
+	.list{
+		margin-right: -20px;
+		
+		.item{
+			float: left;
+			width: 235px;
+		    height: 204px;
+		    margin-bottom: 20px;
+		    margin-right: 20px;
+		    overflow: hidden;
+		    color: #555;
+			&:hover{
+				color: #00a1d6;
+			}
+		}
+		.titleimg{
+			width: 235px;
+		    height: 148px;
+		    overflow: hidden;
+		    position: relative;
+		    z-index: 2;
+		    border-radius: 4px;
+		    margin-bottom: 4px;
+			&:hover{
+				.mask{
+					display: block;
+				}
+			}
+			.cover{
+				width: 235px;
+		    	height: 148px;
+			    transition: all 1s ease 0s;
+			}
+			.mask{
+			 	display: none;
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    width: 233px;
+			    height: 148px;
+			    background: rgba(0,0,0,0.6) url(http://www-static.diyidan.net/static/image/play.png) no-repeat center;
+			    background-size: 46px;
+			}
+		}
+		.subtitle{
+			overflow: hidden;
+			text-overflow:ellipsis;
+			white-space: nowrap;
+			padding-right: 5px;
+			
+		}
+		.counts{
+			line-height: 26px;
+			&>span{
+				margin-right: 15px;
+			}
+			.like{
+				background: url(http://www-static.diyidan.net/static/image/mobile_reply_icon.png) no-repeat left;
+			    background-size: 20px;
+			    margin-left: -2px;
+			    padding-left: 24px;
+			}
+			.give{
+				background: url(http://www-static.diyidan.net/static/image/mobile_candy_icon.png) no-repeat left;
+			    background-size: 20px;
+			    margin-left: -2px;
+			    padding-left: 24px;
+
+			}
+			
+		}
+
+	}
+}

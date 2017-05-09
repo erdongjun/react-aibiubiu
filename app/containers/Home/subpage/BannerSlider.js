@@ -6,7 +6,7 @@ import { Carousel } from 'antd';
 
 
 //css 依赖
-import './bannerslider.less';
+import './subpage.less';
 
 
 class BannerSlider extends React.Component{
@@ -20,7 +20,6 @@ class BannerSlider extends React.Component{
 	render(){
 		var settings = {
 	      dots: true,
-	      dotsClass:'subbanner',
 	      infinite: true,
 	      speed: 500,
 	      slidesToShow: 1,
@@ -33,7 +32,6 @@ class BannerSlider extends React.Component{
 			    <div className="banneritem">1</div>
 			    <div className="banneritem">2</div>
 			    <div className="banneritem">3</div>
-			    <div className="banneritem">4</div>
 			    <div className="banneritem">5</div>
 			</Carousel>
 		)

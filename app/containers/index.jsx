@@ -3,6 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 // 组件依赖
 import HomeLayout from '../components/Layout/Layout.js';
 
+import './../static/css/common.less'
+
 
 class App extends React.Component {
     constructor(props, context) {
