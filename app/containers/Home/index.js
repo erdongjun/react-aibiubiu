@@ -5,6 +5,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import BannerSlider from './subpage/BannerSlider';
 import CateList from './subpage/CateList';
 import Recommend from './subpage/Recommend';
+import PrivateZone from './subpage/PrivateZone';
 
 import './index.less'
 
@@ -24,11 +25,7 @@ class Home extends React.Component {
                         <CateList />
                     </div>
                     <Recommend />
-
-
-
-
-                    
+                    <PrivateZone />
                 </div>
             </div>
         )

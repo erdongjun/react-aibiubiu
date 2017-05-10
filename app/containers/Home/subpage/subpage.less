@@ -182,3 +182,54 @@
 
 	}
 }
+// 私人专区
+.privateZone{
+	.privatelist{
+		margin-right: -20px;
+	}
+	.item{
+		float: left;
+		width: 184px;
+		height: 184px;
+		margin-right: 20px;
+		margin-bottom: 15px;
+		position: relative;
+		overflow: hidden;
+		text-align: center;
+		&:hover{
+			.mask{
+				top:104px;
+		    	transition: all 0.5s ease 0s;
+			}
+			img{
+		    	transition: all 0.5s ease 0s;
+		    	transform:scale(1.2)
+			}
+		}
+		&>img{
+			display: block;
+			width: 184px;
+			height: 184px;
+		    transition: all 0.5s ease 0s;
+		}
+		.mask{
+			position: absolute;
+		    top: 144px;
+		    height: 80px;
+		    width: 100%;
+		    color: #fff;
+		    background: rgba(0,0,0,0.5);
+		    transition: all 0.5s ease 0s;
+		    .pri-tit{
+		    	height: 40px;
+			    line-height: 40px;
+			    text-align: center;
+			    font-size: 20px;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
+			    letter-spacing: 2px;
+		    }
+		}
+	}
+}
