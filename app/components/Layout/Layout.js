@@ -16,7 +16,7 @@ class HomeLayout extends React.Component {
         <Header className="head">
           <div className="headwrap">
             <div className="logo" >
-              <img  className="logoimg" src="http://www-static.diyidan.com/static/image/logo.png?v=c94011f5ba5ab3feabbb4f8cf42cb5e2" alt="logo"/>
+              <img  className="logoimg" src={require('../../static/imgs/logo.png')} alt="logo"/>
             </div>
             <div className="menu">
               <ul>

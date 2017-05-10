@@ -14,9 +14,11 @@ webpack+react相关配置
 
 2. 下载完成 进入项目目录  执行 npm install 命令 安装项目依赖库 
 
-3. 安装完成 执行 npm start  webpack编译项目 
+3. 安装完成 执行 npm start 编译项目 
 
 4. 打开 http:localhost:8000  查看效果;
+
+5. 在当前目录下新开终端 执行 npm run mock  开启本地接口测试
 
 
 
