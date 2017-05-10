@@ -6,6 +6,23 @@ var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 // var nodeModulesPath = path.resolve(__dirname, 'node_modules')
 // console.log(process.env.NODE_ENV)
+// 本地模拟数据配置
+var mockConfig = {
+    target: 'localhost:3000',
+    secure: false,
+    changeOrigin : true
+}
+//  线上测试数据配置
+var testConfig = {
+    target: 'http://aibiubiu.com:80',
+    pathRewrite: {'^/api': ''},
+    secure: false,
+    changeOrigin : true
+}
+// 是否使用本地模拟数据
+var isMock = true ;
+
+var poxyConfig = isMock ? mockConfig : testConfig ;
 
 module.exports = {
     entry: path.resolve(__dirname, 'app/index.js'),
@@ -63,12 +80,7 @@ module.exports = {
         proxy: {
           // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
           // koa 代码在 ./mock 目录中，启动命令为 npm run mock
-          '/api': {
-            target: 'http://aibiubiu.com:80',
-            secure: false,
-            pathRewrite: {'^/api': ''},
-            changeOrigin : true
-          }
+          '/api': poxyConfig
         },
         contentBase: "./public", //本地服务器所加载的页面所在的目录
         colors: true, //终端中输出结果为彩色

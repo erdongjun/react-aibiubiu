@@ -26,7 +26,15 @@ webpack+react相关配置
    浏览器输入http:localhost:8001  查看效果;
 
 
+### proxy 跨域代理配置
 
+ webpack.config.js中 
+
+ 分别设置 mock模拟数据配置 和 代理服务器配置;
+
+ 通过设置 isMock true 或 false 来匹配对应的配置
+
+ 
 
 V1.0.0 版本
 
