@@ -23,7 +23,7 @@ webpack+react相关配置
 
 7. 查看打包后效果, 执行 cd build 命令,进入 build 目录, 执行 http-server -p 8001 命令, 
 
-   浏览器输入http:localhost:8001  查看效果;
+   浏览器输入http:localhost:8001  查看效果; (eg:出错请全局下安装 http-server 模块)
 
 
 ### proxy 跨域代理配置
