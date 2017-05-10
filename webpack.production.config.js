@@ -31,10 +31,11 @@ module.exports = {
 
   module: {
     loaders: [
+        { test: /\.html$/,loader: 'html-withimg-loader'},
         { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel' },
         { test: /\.less$/,  loader: ExtractTextPlugin.extract('style', 'css!postcss!less') },
         { test: /\.css$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
-        { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000&name=imgs/[name].[chunkhash:8].[ext]' },
+        { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000&name=imgs/[name].[ext]' },
         { test:/\.(woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000&name=fonts/[name].[ext]'}
     ]
   },
