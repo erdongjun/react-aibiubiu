@@ -9,7 +9,6 @@ webpack+react相关配置
 
 前提:本地安装好git 以及 node
 
-
 1. 进入终端  git clone https://github.com/Davau/react-aibiubiu.git 
 
 2. 下载完成 进入项目目录  执行 npm install 命令 安装项目依赖库 
