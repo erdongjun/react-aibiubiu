@@ -25,6 +25,7 @@ var isMock = false ;
 var poxyConfig = isMock ? mockConfig : testConfig ;
 
 module.exports = {
+    devtool: 'eval-source-map',
     entry: path.resolve(__dirname, 'app/index.js'),
     output: {
         path: __dirname + "/build",

@@ -1,5 +1,10 @@
-import { get } from './get.js'
+import API from './fetch';
+
+console.log(API)
+
 
 export function testFetch() {
-    return get('/api/Home/User/index')
+    return API.postFetch('/api/Home/User/index',{name:'xifan',age:23}).then((data)=>{
+    	console.log(data);
+    }).catch((err)=>{console.log(err)})
 }
