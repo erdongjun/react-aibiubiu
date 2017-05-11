@@ -6,6 +6,7 @@ import BannerSlider from './subpage/BannerSlider';
 import CateList from './subpage/CateList';
 import Recommend from './subpage/Recommend';
 import PrivateZone from './subpage/PrivateZone';
+import CommentList from './subpage/CommentList';
 
 import './index.less'
 
@@ -26,6 +27,7 @@ class Home extends React.Component {
                     </div>
                     <Recommend />
                     <PrivateZone />
+                    <CommentList />
                 </div>
             </div>
         )
