@@ -73,7 +73,7 @@ API.postFetch= function(url,formData) {
           	})  
           	.then((json) => {  
               	return json;
-          	}) 
+          	})
 }  
 
 export default API;
