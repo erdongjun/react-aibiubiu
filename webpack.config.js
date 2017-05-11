@@ -20,7 +20,7 @@ var testConfig = {
     changeOrigin : true
 }
 // 是否使用本地模拟数据
-var isMock = true ;
+var isMock = false ;
 
 var poxyConfig = isMock ? mockConfig : testConfig ;
 
