@@ -6,8 +6,6 @@ import { Link } from 'react-router';
 
 
 //框架依赖
-//css 依赖
-import './subpage.less';
 
 
 class CateList extends React.Component{

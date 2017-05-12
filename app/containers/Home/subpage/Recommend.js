@@ -4,8 +4,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 //框架依赖
-//css 依赖
-import './subpage.less';
 
 class Recommend extends React.Component{
 	constructor(props) {

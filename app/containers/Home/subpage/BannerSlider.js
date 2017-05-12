@@ -5,8 +5,6 @@ import React from 'react';
 import { Carousel } from 'antd';
 
 
-//css 依赖
-import './subpage.less';
 
 
 class BannerSlider extends React.Component{

@@ -8,7 +8,8 @@ import Recommend from './subpage/Recommend';
 import PrivateZone from './subpage/PrivateZone';
 import CommentList from './subpage/CommentList';
 
-import './index.less'
+import './index.less';
+import './subpage/subpage.less';
 
 
 
@@ -28,6 +29,7 @@ class Home extends React.Component {
                     <Recommend />
                     <PrivateZone />
                     <CommentList />
+                    <div className='seemore'>查看更多<i className='icon-arrow-right iconfont'></i></div>
                 </div>
             </div>
         )

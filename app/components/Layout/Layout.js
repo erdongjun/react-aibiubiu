@@ -4,16 +4,46 @@ import { Link } from 'react-router';
 import { Layout, Menu,Button, Breadcrumb,Affix } from 'antd';
 const { Header, Content, Footer } = Layout;
 
+import LoginModal from './../Common/LoginModal'
+
+import {showSuccess} from './../Common/Common';
 
 import './layout.less'
 
 class HomeLayout extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+        visiable:false
+    };
 
+    this.LoginShow = this.LoginShow.bind(this);
+    this.LoginHide = this.LoginHide.bind(this);
+    this.Login = this.Login.bind(this);
+    this.Logout = this.Logout.bind(this);
+
+  }
+  LoginShow(){
+    this.setState({
+        visiable:true
+    })
+  }
+  LoginHide(){
+    this.setState({
+        visiable:false
+    })
+  }
+  Login(){
+    console.log('login')
+  }
+  Logout(){
+    console.log('logout')
+  }
   render () {
-    const {children} = this.props;
+    const {children} =  this.props;
     return (
       <Layout  className="layout bg"  >
-        <Header className="head">
+        <Header className="head" >
           <div className="headwrap">
             <div className="logo" >
               <img  className="logoimg" src={require('../../static/imgs/logo.png')} alt="logo"/>
@@ -27,7 +57,7 @@ class HomeLayout extends React.Component {
             </div>
             <div className="loginwrap">
                 <div className="login">
-                  <button className="loginbtn" >登录</button>
+                  <button className="loginbtn" onClick={this.LoginShow} >登录</button>
                   <button className="loginbtn" >注册</button>
                 </div>
 
@@ -44,6 +74,7 @@ class HomeLayout extends React.Component {
         <Footer className="footer" style={{ textAlign: 'center' }}>
           aibiubiu.com ©2017 Created by xifan
         </Footer>
+        <LoginModal visiable={this.state.visiable} LoginShow={this.LoginShow} LoginHide={this.LoginHide} Login={this.Login} Logout={this.Logout} />
       </Layout>
     );
   }
