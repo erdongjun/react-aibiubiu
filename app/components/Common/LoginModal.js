@@ -42,7 +42,7 @@ class HorizontalLoginForm extends React.Component {
 	render(){
 		const { getFieldDecorator } = this.props.form;
 		return(
-			<Modal title="Basic Modal" visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
+			<Modal footer={null} title="Basic Modal" visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
 				<Form onSubmit={this.handleSubmit} className="login-form">
 			        <FormItem>
 			          {getFieldDecorator('userName', {
