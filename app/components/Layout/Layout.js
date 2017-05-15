@@ -14,18 +14,18 @@ class HomeLayout extends React.Component {
   constructor(){
     super()
     this.state = {
-        visiable:false
+        visiable:false,
+        type:0
     };
-
     this.LoginShow = this.LoginShow.bind(this);
     this.LoginHide = this.LoginHide.bind(this);
     this.Login = this.Login.bind(this);
     this.Logout = this.Logout.bind(this);
-
   }
-  LoginShow(){
+  LoginShow(type){
     this.setState({
-        visiable:true
+        visiable:true,  
+        type:type
     })
   }
   LoginHide(){
@@ -57,8 +57,8 @@ class HomeLayout extends React.Component {
             </div>
             <div className="loginwrap">
                 <div className="login">
-                  <button className="loginbtn" onClick={this.LoginShow} >登录</button>
-                  <button className="loginbtn" >注册</button>
+                  <button className="loginbtn" onClick={()=>this.LoginShow(1)} >登录</button>
+                  <button className="loginbtn"  onClick={()=>this.LoginShow(0)} >注册</button>
                 </div>
 
                 <div className="logout">
@@ -74,7 +74,7 @@ class HomeLayout extends React.Component {
         <Footer className="footer" style={{ textAlign: 'center' }}>
           aibiubiu.com ©2017 Created by xifan
         </Footer>
-        <LoginModal visiable={this.state.visiable} LoginShow={this.LoginShow} LoginHide={this.LoginHide} Login={this.Login} Logout={this.Logout} />
+        <LoginModal visiable={this.state.visiable} type={this.state.type} LoginShow={this.LoginShow} LoginHide={this.LoginHide} Login={this.Login} Logout={this.Logout} />
       </Layout>
     );
   }

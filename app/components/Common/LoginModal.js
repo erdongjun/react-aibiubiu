@@ -2,6 +2,8 @@ import React from 'react';
 import { Modal, Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 
+import './common.less'
+
 class HorizontalLoginForm extends React.Component {
 	constructor(props){
 		super(props);
@@ -24,8 +26,8 @@ class HorizontalLoginForm extends React.Component {
 	      }
 	    });
 	}
-	showModal(){
-		this.props.LoginShow()
+	showModal(type){
+		this.props.LoginShow(type)
 	}
 	handleOk(){
 		console.log(this)
@@ -41,41 +43,68 @@ class HorizontalLoginForm extends React.Component {
 	}
 	render(){
 		const { getFieldDecorator } = this.props.form;
-		return(
-			<Modal footer={null} title="Basic Modal" visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
-				<Form onSubmit={this.handleSubmit} className="login-form">
-			        <FormItem>
-			          {getFieldDecorator('userName', {
-			            rules: [{ required: true, message: 'Please input your username!' }],
-			          })(
-			            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
-			          )}
-			        </FormItem>
-			        <FormItem>
-			          {getFieldDecorator('password', {
-			            rules: [{ required: true, message: 'Please input your Password!' }],
-			          })(
-			            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
-			          )}
-			        </FormItem>
-			        <FormItem>
-			          {getFieldDecorator('remember', {
-			            valuePropName: 'checked',
-			            initialValue: true,
-			          })(
-			            <Checkbox>Remember me</Checkbox>
-			          )}
-			          <a className="login-form-forgot" href="">Forgot password</a>
-			          <Button type="primary" htmlType="submit" className="login-form-button">
-			            Log in
-			          </Button>
-			          Or <a href="">register now!</a>
-			        </FormItem>
-			     </Form>
-	         
-	        </Modal>
-			
-		)
+		let type = this.props.type;
+		if(type==0){
+			return(
+				<Modal footer={null} title="注册" width = '330px' wrapClassName='loginBox' visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
+					<Form onSubmit={this.handleSubmit}>
+				        <FormItem>
+				          {getFieldDecorator('userName', {
+				            rules: [{ required: true, message: 'Please input your username!' }],
+				          })(
+				            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
+				          )}
+				        </FormItem>
+				        <FormItem>
+				          {getFieldDecorator('password', {
+				            rules: [{ required: true, message: 'Please input your Password!' }],
+				          })(
+				            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
+				          )}
+				        </FormItem>
+				         <FormItem>
+				          {getFieldDecorator('confirmpassword', {
+				            rules: [{ required: true, message: 'Please input your Password!' }],
+				          })(
+				            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="confirmPassword" />
+				          )}
+				        </FormItem>
+				        <FormItem>
+				          <Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
+				          <p className='des'><a href="javascript:;" onClick={()=>this.showModal(1)}>login now!</a></p>
+				        </FormItem>
+				     </Form>
+		        </Modal>
+			)
+		}else {
+			return(
+				<Modal footer={null} title="登录" width = '330px' wrapClassName='loginBox' visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
+					<Form onSubmit={this.handleSubmit}>
+				        <FormItem>
+				          {getFieldDecorator('userName', {
+				            rules: [{ required: true, message: 'Please input your username!' }],
+				          })(
+				            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
+				          )}
+				        </FormItem>
+				        <FormItem>
+				          {getFieldDecorator('password', {
+				            rules: [{ required: true, message: 'Please input your Password!' }],
+				          })(
+				            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
+				          )}
+				        </FormItem>
+				        <FormItem>
+				          <Button type="primary" htmlType="submit" className="login-form-button">
+				            Log in
+				          </Button>
+				          <p className='des'><a href="javascript:;"  onClick={()=>this.showModal(0)}>register now!</a></p>
+				        </FormItem>
+				     </Form>
+		        </Modal>
+			)
+		}
+		
 	}
 
 }
