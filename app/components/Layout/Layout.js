@@ -60,7 +60,6 @@ class HomeLayout extends React.Component {
                   <button className="loginbtn" onClick={()=>this.LoginShow(1)} >登录</button>
                   <button className="loginbtn"  onClick={()=>this.LoginShow(0)} >注册</button>
                 </div>
-
                 <div className="logout">
                   <a href=""><img src="http://image.diyidan.net/user/2017/4/24/U8hklQfLuTDsw6dR.jpg!tiny" alt="" /></a>
                   <button className="loginbtn" >退出</button>

@@ -14,8 +14,8 @@ var mockConfig = {
 }
 //  线上测试数据配置
 var testConfig = {
-    target: 'http://aibiubiu.com:80',
-    // pathRewrite: {'^/api': ''},
+    target: 'http://www.aibiubiu.com:80',
+    pathRewrite: {'^/api': '/Api'},
     secure: false,
     changeOrigin : true
 }

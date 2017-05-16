@@ -13,7 +13,8 @@ var API = {};
 
 
 let headers = {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     };  
 
 API.getFetch = function(url, params) {
@@ -26,7 +27,7 @@ API.getFetch = function(url, params) {
             url += '&' + paramsArray.join('&')  
         }  
     }  
-    return  fetch(url, { method: 'GET',  headers: headers }) 
+    return  fetch(url, { method: 'GET',credentials: 'include',  mode: 'cors',  headers: headers }) 
           	.then((response) => {  
               	if (response.ok) {  
                   	return response.json();  
@@ -63,7 +64,7 @@ API.postFetch= function(url,formData) {
             data.append(key, value)
         }
 	}
-    return  fetch(url, { method: 'POST',headers: headers,body:data}) 
+    return  fetch(url, { method: 'POST',credentials: 'include', mode: 'cors',  headers: headers,body:data}) 
           	.then((response) => {  
               	if (response.ok) {  
                   	return response.json();  
