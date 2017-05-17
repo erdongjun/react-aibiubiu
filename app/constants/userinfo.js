@@ -1,2 +1,1 @@
-export const USERINFO_LOGIN = 'USERINFO_LOGIN';
-export const USERINFO_LOGOUT = 'USERINFO_LOGOUT';
+export const USERINFO = 'USERINFO';

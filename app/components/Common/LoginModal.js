@@ -15,10 +15,11 @@ class HorizontalLoginForm extends React.Component {
 		this.showModal = this.showModal.bind(this);
 		this.handleOk = this.handleOk.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleLogin = this.handleLogin.bind(this);
+		this.handleRegister = this.handleRegister.bind(this);
 	}
 
-	handleSubmit (e) {
+	handleLogin (e) {
 	    e.preventDefault();
 	    this.props.form.validateFields((err, values) => {
 	      if (!err) {
@@ -38,6 +39,17 @@ class HorizontalLoginForm extends React.Component {
 	    }, 1000);
 	}
 
+	handleRegister(e){
+		e.preventDefault();
+		
+	    this.props.form.validateFields((err, values) => {
+	      if (!err) {
+	        console.log('Received values of form: ', values);
+	        this.props.Register(values);
+	      }
+	    });
+	}
+
 	handleCancel(){
 	    this.props.LoginHide()
 	}
@@ -47,7 +59,7 @@ class HorizontalLoginForm extends React.Component {
 		if(type==0){
 			return(
 				<Modal footer={null} title="注册" width = '330px' wrapClassName='loginBox' visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
-					<Form onSubmit={this.handleSubmit}>
+					<Form onSubmit={this.handleRegister}>
 				        <FormItem>
 				          {getFieldDecorator('userName', {
 				            rules: [{ required: true, message: 'Please input your username!' }],
@@ -70,7 +82,7 @@ class HorizontalLoginForm extends React.Component {
 				          )}
 				        </FormItem>
 				        <FormItem>
-				          <Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
+				          <Button type="primary" htmlType="submit" className="login-form-button">注册</Button>
 				          <p className='des'><a href="javascript:;" onClick={()=>this.showModal(1)}>login now!</a></p>
 				        </FormItem>
 				     </Form>
@@ -79,7 +91,7 @@ class HorizontalLoginForm extends React.Component {
 		}else {
 			return(
 				<Modal footer={null} title="登录" width = '330px' wrapClassName='loginBox' visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
-					<Form onSubmit={this.handleSubmit}>
+					<Form onSubmit={this.handleLogin}>
 				        <FormItem>
 				          {getFieldDecorator('userName', {
 				            rules: [{ required: true, message: 'Please input your username!' }],
@@ -96,7 +108,7 @@ class HorizontalLoginForm extends React.Component {
 				        </FormItem>
 				        <FormItem>
 				          <Button type="primary" htmlType="submit" className="login-form-button">
-				            Log in
+				            登录
 				          </Button>
 				          <p className='des'><a href="javascript:;"  onClick={()=>this.showModal(0)}>register now!</a></p>
 				        </FormItem>

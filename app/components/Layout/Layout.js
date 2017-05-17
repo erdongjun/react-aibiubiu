@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import {connect} from 'react-redux';
 //框架依赖
 import { Layout, Menu,Button, Breadcrumb,Affix } from 'antd';
 const { Header, Content, Footer } = Layout;
@@ -9,6 +10,12 @@ import LoginModal from './../Common/LoginModal'
 import {showSuccess} from './../Common/Common';
 
 import './layout.less'
+
+import {
+  fetchRegister,
+  login
+  
+} from '../../actions/userinfo'
 
 class HomeLayout extends React.Component {
   constructor(){
@@ -21,8 +28,11 @@ class HomeLayout extends React.Component {
     this.LoginHide = this.LoginHide.bind(this);
     this.Login = this.Login.bind(this);
     this.Logout = this.Logout.bind(this);
+    this.Register = this.Register.bind(this);
   }
   LoginShow(type){
+    console.log(this.props);
+   this.props.dispatch(fetchRegister())
     this.setState({
         visiable:true,  
         type:type
@@ -33,14 +43,20 @@ class HomeLayout extends React.Component {
         visiable:false
     })
   }
-  Login(){
+  Login(parms){
     console.log('login')
+  }
+  Register(parms){
+    console.log(parms);
+    console.log('Register');
   }
   Logout(){
     console.log('logout')
   }
+
   render () {
-    const {children} =  this.props;
+    const {children} = this.props;
+
     return (
       <Layout  className="layout bg"  >
         <Header className="head" >
@@ -73,10 +89,15 @@ class HomeLayout extends React.Component {
         <Footer className="footer" style={{ textAlign: 'center' }}>
           aibiubiu.com ©2017 Created by xifan
         </Footer>
-        <LoginModal visiable={this.state.visiable} type={this.state.type} LoginShow={this.LoginShow} LoginHide={this.LoginHide} Login={this.Login} Logout={this.Logout} />
+        <LoginModal visiable={this.state.visiable} type={this.state.type} LoginShow={this.LoginShow} LoginHide={this.LoginHide} Login={this.Login} Register={this.Register} Logout={this.Logout} />
       </Layout>
     );
   }
 }
+function mapStateToProps(state,ownProps){
+  return {
+    userinfo:state.userinfo,
+  }
+}
 
-export default HomeLayout;
+export default connect(mapStateToProps)(HomeLayout);
