@@ -5,11 +5,6 @@ import {createLogger} from 'redux-logger';
 
 const logger = createLogger();
 
-
-
-
-console.log(createLogger)
-
 export default function configureStore(initialState) {
     const store = createStore(rootReducer, initialState, applyMiddleware(thunk ,logger),
         // 触发 redux-devtools
