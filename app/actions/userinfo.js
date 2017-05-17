@@ -8,20 +8,21 @@ import API from '../fetch/fetch';
 
 export const login = (data) => ({
 	    type: actionTypes.USERINFO,
-	    data
+	    ...data
 	})
 
 
 export const fetchRegister = (parms) =>{
 
 	return (dispatch, getState) => {
-
+		Msg.showInfo('starting')
 		API.postFetch('/api/User/register1',parms)
 		.then((data)=>{
-			console.log(data)
-			
+			console.log('')
 			dispatch(login(data));
     	})
 		.catch((err)=>{Msg.showError(err)})
+		Msg.showInfo('endding')
+
 	}
 }
