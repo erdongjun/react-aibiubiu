@@ -16,6 +16,19 @@ let headers = {
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*'
     };  
+    
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+  const error = new Error(response.statusText);
+  error.response = response;
+  throw error;
+}
+
+function parseJSON(response) {
+  return response.json();
+}
 
 API.getFetch = function(url, params) {
     if (params) {  
@@ -27,17 +40,14 @@ API.getFetch = function(url, params) {
             url += '&' + paramsArray.join('&')  
         }  
     }  
-    return  fetch(url, { method: 'GET',credentials: 'include',  mode: 'cors',  headers: headers }) 
-          	.then((response) => {  
-              	if (response.ok) {  
-                  	return response.json();  
-              	} else {  
-                  	return Promise.reject({status:response.status});
-              	}  
-          	})  
+    
+    return fetch(url, { method: 'GET',credentials: 'include',  mode: 'cors',  headers: headers }) 
+            .then(checkStatus)  
+          	.then(parseJSON)  
           	.then((json) => {  
               	return json;
-          	}) 
+                console.log(json)
+          	})
          
 }  
 
@@ -65,13 +75,8 @@ API.postFetch= function(url,formData) {
         }
 	}
     return  fetch(url, { method: 'POST',credentials: 'include', mode: 'cors',  headers: headers,body:data}) 
-          	.then((response) => {  
-              	if (response.ok) {  
-                  	return response.json();  
-              	} else {  
-                  	return Promise.reject({status:response.status});
-              	}  
-          	})  
+          	.then(checkStatus)  
+            .then(parseJSON)  
           	.then((json) => {  
               	return json;
           	})

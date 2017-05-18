@@ -13,8 +13,9 @@ import './layout.less'
 
 import {
   fetchRegister,
-  login
-  
+  fetchLogin,
+  fetchIsLogin,
+  fetchLogout
 } from '../../actions/userinfo'
 
 class HomeLayout extends React.Component {
@@ -32,7 +33,6 @@ class HomeLayout extends React.Component {
   }
   LoginShow(type){
     console.log(this.props);
-   this.props.dispatch(fetchRegister())
     this.setState({
         visiable:true,  
         type:type
@@ -44,19 +44,20 @@ class HomeLayout extends React.Component {
     })
   }
   Login(parms){
-    console.log('login')
+    this.props.dispatch(fetchLogin(parms))
   }
   Register(parms){
     console.log(parms);
-    console.log('Register');
+    this.props.dispatch(fetchRegister(parms))
   }
   Logout(){
-    console.log('logout')
+    this.props.dispatch(fetchLogout())
   }
-
   render () {
     const {children} = this.props;
-
+    const userinfo = this.props.userinfo;
+    var isLogin = userinfo.data && userinfo.data.id ;
+    console.log('isLogin',isLogin)
     return (
       <Layout  className="layout bg"  >
         <Header className="head" >
@@ -72,14 +73,15 @@ class HomeLayout extends React.Component {
               </ul>
             </div>
             <div className="loginwrap">
-                <div className="login">
+              {!isLogin?<div className="login">
                   <button className="loginbtn" onClick={()=>this.LoginShow(1)} >登录</button>
                   <button className="loginbtn"  onClick={()=>this.LoginShow(0)} >注册</button>
                 </div>
-                <div className="logout">
+                :<div className="logout">
                   <a href=""><img src="http://image.diyidan.net/user/2017/4/24/U8hklQfLuTDsw6dR.jpg!tiny" alt="" /></a>
-                  <button className="loginbtn" >退出</button>
+                  <button className="loginbtn" onClick={this.Logout}>退出</button>
                 </div>
+                 }
             </div>
           </div>
         </Header>
@@ -92,6 +94,24 @@ class HomeLayout extends React.Component {
         <LoginModal visiable={this.state.visiable} type={this.state.type} LoginShow={this.LoginShow} LoginHide={this.LoginHide} Login={this.Login} Register={this.Register} Logout={this.Logout} />
       </Layout>
     );
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps',nextProps);
+    var userinfo = nextProps.userinfo;
+    if(userinfo.data && userinfo.data.id){
+      console.log('')
+      this.setState({
+        visiable:false
+      })
+    }
+  }
+  componentDidMount() {
+    var userinfo = this.props.userinfo;
+    if(userinfo.data && userinfo.data.id){
+      console.log('已登录');
+    }else {
+      this.props.dispatch(fetchIsLogin())
+    }
   }
 }
 function mapStateToProps(state,ownProps){

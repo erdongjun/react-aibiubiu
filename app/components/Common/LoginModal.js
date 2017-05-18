@@ -9,23 +9,12 @@ class HorizontalLoginForm extends React.Component {
 		super(props);
 		this.state={
 			loading: false,
-			username:'',
-			password:''
 		}
 		this.showModal = this.showModal.bind(this);
 		this.handleOk = this.handleOk.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.handleLogin = this.handleLogin.bind(this);
 		this.handleRegister = this.handleRegister.bind(this);
-	}
-
-	handleLogin (e) {
-	    e.preventDefault();
-	    this.props.form.validateFields((err, values) => {
-	      if (!err) {
-	        console.log('Received values of form: ', values);
-	      }
-	    });
 	}
 	showModal(type){
 		this.props.LoginShow(type)
@@ -38,10 +27,18 @@ class HorizontalLoginForm extends React.Component {
 			this.props.Login()
 	    }, 1000);
 	}
+	handleLogin (e) {
+	    e.preventDefault();
+	    this.props.form.validateFields((err, values) => {
+	      if (!err) {
+	        console.log('Received values of form: ', values);
+	        this.props.Login(values);
 
+	      }
+	    });
+	}
 	handleRegister(e){
 		e.preventDefault();
-		
 	    this.props.form.validateFields((err, values) => {
 	      if (!err) {
 	        console.log('Received values of form: ', values);
@@ -61,7 +58,7 @@ class HorizontalLoginForm extends React.Component {
 				<Modal footer={null} title="注册" width = '330px' wrapClassName='loginBox' visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
 					<Form onSubmit={this.handleRegister}>
 				        <FormItem>
-				          {getFieldDecorator('userName', {
+				          {getFieldDecorator('username', {
 				            rules: [{ required: true, message: 'Please input your username!' }],
 				          })(
 				            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
@@ -72,13 +69,6 @@ class HorizontalLoginForm extends React.Component {
 				            rules: [{ required: true, message: 'Please input your Password!' }],
 				          })(
 				            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
-				          )}
-				        </FormItem>
-				         <FormItem>
-				          {getFieldDecorator('confirmpassword', {
-				            rules: [{ required: true, message: 'Please input your Password!' }],
-				          })(
-				            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="confirmPassword" />
 				          )}
 				        </FormItem>
 				        <FormItem>
@@ -93,7 +83,7 @@ class HorizontalLoginForm extends React.Component {
 				<Modal footer={null} title="登录" width = '330px' wrapClassName='loginBox' visible={this.props.visiable} onOk={this.handleOk} onCancel={this.handleCancel}>
 					<Form onSubmit={this.handleLogin}>
 				        <FormItem>
-				          {getFieldDecorator('userName', {
+				          {getFieldDecorator('username', {
 				            rules: [{ required: true, message: 'Please input your username!' }],
 				          })(
 				            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
