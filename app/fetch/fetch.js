@@ -9,9 +9,28 @@ import 'es6-promise';
  * @returns {Promise} 
  */  
 
+
+//获取当前域名--
+
+
+var  API_URL ="";
+var hostname=window.location.hostname;
+var port = window.location.port;
+var host = window.location.host;
+
+
+if(hostname=="test.aibiubiu.com"){
+    // online
+  API_URL = 'http://www.aibiubiu.com';
+
+}else{
+
+  API_URL = 'http://'+host;
+
+    
+}
+
 var API = {};  
-
-
 let headers = {
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -31,22 +50,22 @@ function parseJSON(response) {
 }
 
 API.getFetch = function(url, params) {
+    var hosturl = API_URL+url
     if (params) {  
-        let paramsArray = [];  
+        let paramsArray = []; 
         Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))  
-        if (url.search(/\?/) === -1) {  
-            url += '?' + paramsArray.join('&')  
+        if (hosturl.search(/\?/) === -1) {  
+            hosturl += '?' + paramsArray.join('&')  
         } else {  
-            url += '&' + paramsArray.join('&')  
+            hosturl += '&' + paramsArray.join('&')  
         }  
     }  
     
-    return fetch(url, { method: 'GET',credentials: 'include',  mode: 'cors',  headers: headers }) 
+    return fetch(hosturl, { method: 'GET',credentials: 'include',  mode: 'cors',  headers: headers }) 
             .then(checkStatus)  
           	.then(parseJSON)  
           	.then((json) => {  
               	return json;
-                console.log(json)
           	})
          
 }  
@@ -64,6 +83,7 @@ API.getFetch = function(url, params) {
 
 
 API.postFetch= function(url,formData) { 
+  var hosturl = API_URL+url
 	if(formData){
 		var data = new FormData();
         for (let key in formData) {
@@ -74,7 +94,7 @@ API.postFetch= function(url,formData) {
             data.append(key, value)
         }
 	}
-    return  fetch(url, { method: 'POST',credentials: 'include', mode: 'cors',  headers: headers,body:data}) 
+    return  fetch(hosturl, { method: 'POST',credentials: 'include', mode: 'cors',  headers: headers,body:data}) 
           	.then(checkStatus)  
             .then(parseJSON)  
           	.then((json) => {  

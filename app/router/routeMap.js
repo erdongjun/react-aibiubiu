@@ -3,6 +3,10 @@ import { Router, Route, IndexRoute } from 'react-router'
 
 import App from '../containers'
 import Home from '../containers/Home'
+
+import CreateCate from '../containers/Cate/CreateCate'
+
+
 import City from '../containers/City'
 import User from '../containers/User'
 import Search from '../containers/Search'
@@ -17,6 +21,8 @@ class RouterMap extends React.Component {
             <Router history={this.props.history}>
                 <Route path='/' component={App}>
                     <IndexRoute component={Home}/>
+
+                    <Route path='/createcate' component={CreateCate}/>
                     <Route path='/city' component={City}/>
                     <Route path='/User' component={User}/>
                     <Route path='/search/:type(/:keyword)' component={Search}/>

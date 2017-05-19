@@ -57,7 +57,6 @@ class HomeLayout extends React.Component {
     const {children} = this.props;
     const userinfo = this.props.userinfo;
     var isLogin = userinfo.data && userinfo.data.id ;
-    console.log('isLogin',isLogin)
     return (
       <Layout  className="layout bg"  >
         <Header className="head" >
@@ -96,10 +95,8 @@ class HomeLayout extends React.Component {
     );
   }
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps',nextProps);
     var userinfo = nextProps.userinfo;
     if(userinfo.data && userinfo.data.id){
-      console.log('')
       this.setState({
         visiable:false
       })
@@ -108,7 +105,6 @@ class HomeLayout extends React.Component {
   componentDidMount() {
     var userinfo = this.props.userinfo;
     if(userinfo.data && userinfo.data.id){
-      console.log('已登录');
     }else {
       this.props.dispatch(fetchIsLogin())
     }
