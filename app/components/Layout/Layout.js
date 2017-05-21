@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link ,hashHistory} from 'react-router';
 import {connect} from 'react-redux';
 //框架依赖
 import { Layout, Menu,Button, Breadcrumb,Affix } from 'antd';
@@ -30,6 +30,7 @@ class HomeLayout extends React.Component {
     this.Login = this.Login.bind(this);
     this.Logout = this.Logout.bind(this);
     this.Register = this.Register.bind(this);
+    this.JumpPost = this.JumpPost.bind(this);
   }
   LoginShow(type){
     console.log(this.props);
@@ -52,6 +53,12 @@ class HomeLayout extends React.Component {
   }
   Logout(){
     this.props.dispatch(fetchLogout())
+  }
+  JumpPost(){
+    console.log('跳转发帖页面');
+
+    hashHistory.push({pathname:'/createcate'})
+    console.log(hashHistory)
   }
   render () {
     const {children} = this.props;
@@ -79,6 +86,7 @@ class HomeLayout extends React.Component {
                 :<div className="logout">
                   <a href=""><img src="http://image.diyidan.net/user/2017/4/24/U8hklQfLuTDsw6dR.jpg!tiny" alt="" /></a>
                   <button className="loginbtn" onClick={this.Logout}>退出</button>
+                  <span onClick={this.JumpPost} className='postbtn'><i className='iconfont icon-cloud'></i>我要发帖</span>
                 </div>
                  }
             </div>

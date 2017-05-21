@@ -16,6 +16,11 @@ import NotFound from '../containers/404'
 // 参见 https://github.com/reactjs/react-router/tree/master/examples/huge-apps
 
 class RouterMap extends React.Component {
+    componentDidMount() {
+    console.log('1=====',this.props.history);
+
+        
+    }
     render() {
         return (
             <Router history={this.props.history}>

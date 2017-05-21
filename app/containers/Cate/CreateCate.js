@@ -18,6 +18,13 @@ class CreateCate extends React.Component {
                             <span className="applybtn">申请原创</span>
                         </div>
                     </div>
+                    <div className='item'>
+                        <div className='post'>
+                            <span className='title'>标签: </span>
+                            <input type="text" placeholder="完善标题将利于您的内容被发现" />
+                            <span className='ml10'>最多只能有5个标签哟</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
