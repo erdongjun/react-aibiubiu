@@ -1,11 +1,28 @@
 import React from 'react'
+import { Link ,hashHistory} from 'react-router';
+
 import PureRenderMixin from 'react-addons-pure-render-mixin'
+
+import {connect} from 'react-redux';
+
+
+import {showSuccess,showError} from '../../components/Common/Common';
 import './index.less';
 
 class CreateCate extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+    componentDidMount() {
+        if(!this.props.userinfo.data||!this.props.userinfo.data.id){
+            hashHistory.push({pathname:'/'})
+         }
+    }
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.userinfo.data||!nextProps.userinfo.data.id){
+            hashHistory.push({pathname:'/'})
+         }
     }
     render() {
         return (
@@ -32,4 +49,10 @@ class CreateCate extends React.Component {
 }
 
 
-export default CreateCate
+function mapStateToProps(state,ownProps){
+  return {
+    userinfo:state.userinfo,
+  }
+}
+
+export default connect(mapStateToProps)(CreateCate);

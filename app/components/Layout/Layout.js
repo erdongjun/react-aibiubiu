@@ -7,7 +7,7 @@ const { Header, Content, Footer } = Layout;
 
 import LoginModal from './../Common/LoginModal'
 
-import {showSuccess} from './../Common/Common';
+import {showSuccess,showWarn} from './../Common/Common';
 
 import './layout.less'
 
@@ -55,9 +55,13 @@ class HomeLayout extends React.Component {
     this.props.dispatch(fetchLogout())
   }
   JumpPost(){
-    console.log('跳转发帖页面');
+    console.log('跳转发帖页面 判断是否登录');
+    if(this.props.userinfo.data&&this.props.userinfo.data.id){
+      hashHistory.push({pathname:'/createcate'})
+    }else {
+      showWarn('请登录后发帖')
+    }
 
-    hashHistory.push({pathname:'/createcate'})
     console.log(hashHistory)
   }
   render () {
@@ -81,7 +85,7 @@ class HomeLayout extends React.Component {
             <div className="loginwrap">
               {!isLogin?<div className="login">
                   <button className="loginbtn" onClick={()=>this.LoginShow(1)} >登录</button>
-                  <button className="loginbtn"  onClick={()=>this.LoginShow(0)} >注册</button>
+                  <button className="loginbtn" onClick={()=>this.LoginShow(0)} >注册</button>
                 </div>
                 :<div className="logout">
                   <a href=""><img src="http://image.diyidan.net/user/2017/4/24/U8hklQfLuTDsw6dR.jpg!tiny" alt="" /></a>
@@ -118,6 +122,7 @@ class HomeLayout extends React.Component {
     }
   }
 }
+
 function mapStateToProps(state,ownProps){
   return {
     userinfo:state.userinfo,
