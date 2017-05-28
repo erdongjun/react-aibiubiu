@@ -10,6 +10,8 @@ export const getcatelist = (data) => ({
 	    ...data
 	})
 
+
+
 export const fetchGetCate = () =>{
 	return (dispatch, getState) => {
 		API.getFetch('/api/Cate/index')
@@ -24,4 +26,21 @@ export const fetchGetCate = () =>{
 		.catch((err)=>{Msg.showError(err)});
 	}
 }
+
+export const fetchCreateCircle = (parms,callback) =>{
+	return (dispatch, getState) => {
+		API.postFetch('/api/Cate/add',parms)
+		.then((data)=>{
+			if(data.state == 0){
+				Msg.showSuccess(data.msg);
+				callback()
+			}else {
+				Msg.showError(data.msg)
+			}
+    	})
+		.catch((err)=>{Msg.showError(err)});
+	}
+}
+
+
 
