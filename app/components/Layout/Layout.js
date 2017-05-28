@@ -57,7 +57,7 @@ class HomeLayout extends React.Component {
   JumpPost(){
     console.log('跳转发帖页面 判断是否登录');
     if(this.props.userinfo.data&&this.props.userinfo.data.id){
-      hashHistory.push({pathname:'/createcate'})
+      hashHistory.push({pathname:'/createcircle'})
     }else {
       showWarn('请登录后发帖')
     }

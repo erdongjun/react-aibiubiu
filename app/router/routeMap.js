@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute } from 'react-router'
 import App from '../containers'
 import Home from '../containers/Home'
 
-import CreateCate from '../containers/Cate/CreateCate'
+import CreateCircle from '../containers/Circle/CreateCircle'
 
 
 import City from '../containers/City'
@@ -16,18 +16,12 @@ import NotFound from '../containers/404'
 // 参见 https://github.com/reactjs/react-router/tree/master/examples/huge-apps
 
 class RouterMap extends React.Component {
-    componentDidMount() {
-    console.log('1=====',this.props.history);
-
-        
-    }
     render() {
         return (
             <Router history={this.props.history}>
                 <Route path='/' component={App}>
                     <IndexRoute component={Home}/>
-
-                    <Route path='/createcate' component={CreateCate}/>
+                    <Route path='/createcircle' component={CreateCircle}/>
                     <Route path='/city' component={City}/>
                     <Route path='/User' component={User}/>
                     <Route path='/search/:type(/:keyword)' component={Search}/>

@@ -1,10 +1,10 @@
-import { USERINFO } from '../actions/userinfo'
+import { CATELIST } from '../actions/catelist'
 
 const initialState = {}
 
-function userinfo (state = initialState, action) {
+function catelist (state = initialState, action) {
     switch (action.type) {
-        case USERINFO:
+        case CATELIST:
             return {
             	...state,
             	...action
@@ -14,4 +14,4 @@ function userinfo (state = initialState, action) {
     }
 }
 
-export default  userinfo;
+export default catelist;
