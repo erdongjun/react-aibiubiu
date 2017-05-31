@@ -76,11 +76,9 @@ class HomeLayout extends React.Component {
               <img  className="logoimg" src={require('../../static/imgs/logo.png')} alt="logo"/>
             </div>
             <div className="menu">
-              <ul>
-                  <li className="active"><Link to={'/'}>首页</Link></li>
-                  <li><Link to={'/cate/12'}>分区</Link></li>
-                  <li><Link to={'/products'}>热帖</Link></li>
-              </ul>
+                 <Link  activeClassName="active" to={'/home'}>首页</Link>
+                 <Link  activeClassName="active" to={'/hot'}>分区</Link>
+                 <Link  activeClassName="active" to={'/products'}>热帖</Link>
             </div>
             <div className="loginwrap">
               {!isLogin?<div className="login">

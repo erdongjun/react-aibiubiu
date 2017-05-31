@@ -1,10 +1,6 @@
 import React from 'react'
 import { Link ,hashHistory} from 'react-router';
-
-import PureRenderMixin from 'react-addons-pure-render-mixin'
-
 import {connect} from 'react-redux';
-
 import { Select,Upload, Icon, Modal,Button ,Spin} from 'antd';
 const Option = Select.Option;
 import {showSuccess,showError} from '../../components/Common/Common';
@@ -13,9 +9,6 @@ import {
     fetchGetCate,
     fetchCreateCircle,
     } from '../../actions/catelist'
-
-
-
 class CreateCate extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -24,18 +17,14 @@ class CreateCate extends React.Component {
             cateId:'',
             previewVisible: false,
             previewImage: '',
-            fileList: [{
-              uid: -1,
-              name: 'xxx.png',
-              status: 'done',
-              url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-            }],
+            fileList: [],
+            fileList2: [],
         };
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
         this.handlePreview = this.handlePreview.bind(this);
         this.handleImgChange = this.handleImgChange.bind(this);
+        this.handleImgChange2 = this.handleImgChange2.bind(this);
         this.handleCreateCircle = this.handleCreateCircle.bind(this);
     }
     componentDidMount() {
@@ -75,10 +64,39 @@ class CreateCate extends React.Component {
     }
 
     handleImgChange({fileList}){
-        this.setState({ 
-            fileList
-        })
+        var fileList = fileList.map((file) => {
+          if (file.response) {
+            file.url = file.response.data.url;
+          }
+          return file;
+        });
+        fileList = fileList.filter((file) => {
+          if (file.response) {
+            return file.response.state == 0;
+          }
+          return true;
+        });
+        this.setState({ fileList });
+        console.log(fileList)
     } 
+    handleImgChange2({fileList}){
+        var fileList = fileList.map((file) => {
+          if (file.response) {
+            file.url = file.response.data.url;
+          }
+          return file;
+        });
+        fileList = fileList.filter((file) => {
+          if (file.response) {
+            return file.response.state == 0;
+          }
+          return true;
+        });
+        let fileList2 = fileList;
+        this.setState({ fileList2 });
+        console.log(fileList2)
+    } 
+
     handleCreateCircle(){
         let refs = this.refs;
         var that = this;
@@ -87,6 +105,8 @@ class CreateCate extends React.Component {
         let circletag = refs.circletag.value.trim();
         let cateid = this.state.cateId;
         let userid = this.props.userinfo.data.id;
+        let logo = this.state.fileList[0].url;
+        let bgurl = this.state.fileList2[0].url;
         console.log(refs);
         if(!circlename){
             showError('圈子名称不得为空!');
@@ -100,11 +120,21 @@ class CreateCate extends React.Component {
             showError('分类不得为空!');
             return;
         }
+        if(!logo){
+            showError('logo不得为空!');
+            return;
+        }
+        if(!bgurl){
+            showError('分类不得为空!');
+            return;
+        }
         var parms={
             name:circlename,
             supermanager:userid,
             cateid:cateid,
             info:info,
+            logo:logo,
+            bgurl:bgurl
         }
         console.log('parms', parms)
         this.props.dispatch(fetchCreateCircle(parms,that.createSuc));
@@ -116,7 +146,7 @@ class CreateCate extends React.Component {
     render() {
         const catelist = this.props.catelist;
 
-        const { previewVisible, previewImage, fileList } = this.state;
+        const { previewVisible, previewImage, fileList ,fileList2 } = this.state;
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -180,13 +210,13 @@ class CreateCate extends React.Component {
                             <span className='title'>LOGO: </span>
                             <div className='uploadImg'>
                                 <Upload
-                                  action="//jsonplaceholder.typicode.com/posts/"
+                                  action="/api/Createcircle/fileUpload"
                                   listType="picture-card"
                                   fileList={fileList}
                                   onPreview={this.handlePreview}
                                   onChange={this.handleImgChange}
                                 >
-                                  {fileList.length >= 2 ? null : uploadButton}
+                                  {fileList.length >= 1 ? null : uploadButton}
                                 </Upload>
                             </div>
 
@@ -194,18 +224,19 @@ class CreateCate extends React.Component {
                     </div>
                     <div className='item'>
                         <div className='post'>
-                            <span className='title'>背景图片: </span>
+                            <span className='title'>背景图: </span>
                             <div className='uploadImg'>
                                 <Upload
-                                  action="//jsonplaceholder.typicode.com/posts/"
+                                  action="/api/Createcircle/fileUpload"
                                   listType="picture-card"
-                                  fileList={fileList}
+                                  fileList={fileList2}
                                   onPreview={this.handlePreview}
-                                  onChange={this.handleImgChange}
+                                  onChange={this.handleImgChange2}
                                 >
-                                  {fileList.length >= 2 ? null : uploadButton}
+                                  {fileList2.length >= 1 ? null : uploadButton}
                                 </Upload>
                             </div>
+
                         </div>
                     </div>
                     <div className='item'>
