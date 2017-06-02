@@ -31,7 +31,9 @@ class CreateCate extends React.Component {
         // if(!this.props.userinfo.data||!this.props.userinfo.data.id){
         //     hashHistory.push({pathname:'/'})
         //  }
-        this.props.dispatch(fetchGetCate())
+        if(!this.props.catelist.data||!this.props.catelist.state==0){
+            this.props.dispatch(fetchGetCate())
+        }
     }
     componentWillReceiveProps(nextProps) {
         // if(!nextProps.userinfo.data||!nextProps.userinfo.data.id){
@@ -150,7 +152,7 @@ class CreateCate extends React.Component {
         const uploadButton = (
             <div>
                 <Icon type="plus" />
-                <div className="ant-upload-text">Upload</div>
+                <div className="ant-upload-text">添加</div>
             </div>
         );
 
@@ -183,7 +185,7 @@ class CreateCate extends React.Component {
                             <span className='title'>圈子分类: </span>
                             <Select
                                 showSearch
-                                placeholder="Select a cate"
+                                placeholder="请选择圈子所属分类"
                                 optionFilterProp="children"
                                 onChange={this.handleChange}
                                 filterOption={(input, option) => option.props.value.toLowerCase().indexOf(input.toLowerCase()) >= 0}
@@ -195,14 +197,12 @@ class CreateCate extends React.Component {
                                         )
                                 })}
                             </Select>
-                            <span className='ml10'>请选择圈子所属分类</span>
                         </div>
                     </div>
                     <div className='item'>
                         <div className='post'>
                             <span className='title'>简介: </span>
                             <input  ref='circleinfo'  className='circleinput' type="text" placeholder="圈子简介" />
-                            <span className='ml10'>圈子简介</span>
                         </div>
                     </div>
                     <div className='item'>

@@ -19,7 +19,9 @@ class Hot extends React.Component {
         super(props, context);
     }
     componentDidMount() {
-        this.props.dispatch(fetchHot())
+        if(!this.props.hot.data||!this.props.hot.state==0){
+            this.props.dispatch(fetchHot())
+        }
     }
     render() {
         let hot = this.props.hot;

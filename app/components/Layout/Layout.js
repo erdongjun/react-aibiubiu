@@ -88,7 +88,7 @@ class HomeLayout extends React.Component {
                 :<div className="logout">
                   <a href=""><img src="http://image.diyidan.net/user/2017/4/24/U8hklQfLuTDsw6dR.jpg!tiny" alt="" /></a>
                   <button className="loginbtn" onClick={this.Logout}>退出</button>
-                  <span onClick={this.JumpPost} className='postbtn'><i className='iconfont icon-cloud'></i>我要发帖</span>
+                  <span onClick={this.JumpPost} className='postbtn'><i className='iconfont icon-cloud'></i>创建圈子</span>
                 </div>
                  }
             </div>
