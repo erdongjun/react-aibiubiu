@@ -5,7 +5,12 @@ import App from '../containers'
 import Home from '../containers/Home'
 
 import CreateCircle from '../containers/Circle/CreateCircle'
+import Circle from '../containers/Circle/index'
 import Hot from '../containers/Hot'
+
+
+
+
 import City from '../containers/City'
 import User from '../containers/User'
 import Search from '../containers/Search'
@@ -22,6 +27,7 @@ class RouterMap extends React.Component {
                     <IndexRoute component={Home}/>
                     <Route path='/home' component={Home}/>
                     <Route path='/createcircle' component={CreateCircle}/>
+                    <Route path='/circle/:circleid' component={Circle}/>
                     <Route path='/hot' component={Hot}/>
                     <Route path='/city' component={City}/>
                     <Route path='/User' component={User}/>

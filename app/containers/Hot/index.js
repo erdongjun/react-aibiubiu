@@ -17,11 +17,15 @@ import {
 class Hot extends React.Component {
     constructor(props, context) {
         super(props, context);
+        this.jumpCircle = this.jumpCircle.bind(this);
     }
     componentDidMount() {
         if(!this.props.hot.data||!this.props.hot.state==0){
             this.props.dispatch(fetchHot())
         }
+    }
+    jumpCircle(id){
+        hashHistory.push({pathname:'/circle/'+id})
     }
     render() {
         let hot = this.props.hot;
@@ -36,7 +40,7 @@ class Hot extends React.Component {
         return (
             <div>
                 <SearchBox />
-                <HotList  list={list}/>
+                <HotList  list={list} jumpCircle={this.jumpCircle} />
             </div>
         )
     }

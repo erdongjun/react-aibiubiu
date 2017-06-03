@@ -1,9 +1,9 @@
 //core核心依赖
 import React from 'react';
 
-
 import { Link } from 'react-router';
 
+import Collection from '../../../components/Common/Collection'
 
 class CommentList extends React.Component{
 	constructor(props) {
@@ -48,11 +48,9 @@ class CommentList extends React.Component{
 										</div>
 									</div>	
 								</div>
-								<p className='handle'>
-									<span className='collection'><i className='iconfont icon-star'></i><em>11111</em></span>
-									<span className='collection'><i className='iconfont icon-star'></i><em>11111</em></span>
-									<span className='collection'><i className='iconfont icon-star'></i><em>11111</em></span>
-								</p>
+								<div className='handle'>
+									<Collection />
+								</div>
 							</div>
 						)
 					})}

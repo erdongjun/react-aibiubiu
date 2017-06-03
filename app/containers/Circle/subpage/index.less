@@ -1,0 +1,153 @@
+// 圈子公共头部组件
+.CircleHeadBox{
+	width: 100%;
+	height: 310px;
+	background:#000;
+	position: relative;
+	overflow: hidden;
+
+	.bgimg{
+		opacity: .5;
+		position: absolute;
+		left: 0;
+		top:0;
+		width: 100%;
+		height: 310px;
+		z-index: 2;
+	}
+	.content{
+		padding-top: 0;
+		position: absolute;
+		left: 0;
+		top:0;
+		width: 100%;
+		height: 310px;
+		z-index: 3;
+		color: #fff;
+		text-align: center;
+		.circlelogo{
+			height: 145px;
+			padding-top: 30px;
+			img{
+				width: 100px;
+			    height: 100px;
+			    border: 1px solid rgba(0,0,0,0.5);
+			    border-radius: 50%;
+			    display: block;
+			    margin: 0 auto;
+			}
+		}
+		.circlename{
+			height: 25px;
+    		line-height: 25px;
+    		font-size: 24px;
+		}
+		.circleinfo{
+			color: #d6d6d6;
+    		font-size: 12px;
+    		margin-top: 13px;
+		}
+		.circlenum,.circlesort{
+			width: 264px;
+    		color: #e6e6e6;
+		    font-size: 12px;
+		    margin: 15px auto 0;
+		    span{
+		    	display: inline-block;
+		    	width: 132px;
+    			text-align: center;
+		    }
+		}
+		.circlesort{
+			span{
+				padding-left: 20px;
+				width: 90px;
+    			color: #fff;
+    			background: #fe6e78;
+    			height: 30px;
+    			line-height: 30px;
+    			margin: 5px 15px 0 27px;
+    			border-radius: 15px;
+    			position: relative;
+    			.iconfont{
+    				position: absolute;
+    				left: 12px;
+    				top:0;
+    				font-size: 14px;
+    			}
+			}
+		}
+
+	}
+}
+// 帖子列表
+.PostItemBox{
+	height: 245px;
+	background:#fff;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	cursor:pointer;
+	border: 1px solid #f0f0f0;
+	&:hover{
+		border: 1px solid #ccc;
+	}
+	.PostItemtitle{
+		height: 50px;
+		width: 650px;
+		margin:0  auto;
+		margin-bottom: 10px;
+		padding-top: 10px;
+		border-bottom: 1px solid #F8F8F8;
+		font-size: 12px;
+    	line-height: 50px;
+		.userimg{
+			display: block;
+			margin-top: 5px;
+		    width: 30px;
+		    height: 30px;
+		    margin-left: 5px;
+		    border-radius: 100%;
+		    float: left;
+		}
+		p{
+			line-height: 40px;
+			padding-left: 50px;
+		}
+	}
+	.PostItemcontent{
+		width: 630px;
+		margin:10px  auto;
+		height: 130px;
+		overflow: hidden;
+		.postimg{
+			position: relative;
+			float: left;
+			width: 150px;
+    		height: 130px;
+    		padding-right: 10px;
+			cursor:pointer;
+		}
+		.subtitle{
+			max-height: 40px;
+		    font-size: 15px;
+		    color: #4d4d4d;
+		    text-overflow: ellipsis;
+		    margin-bottom: 10px;
+		    overflow: hidden;
+		    white-space: nowrap;
+		}
+		.subinfo{
+			margin-top: 10px;
+			line-height: 18px;
+            max-height: 56px;
+            overflow: hidden;
+		}
+	}
+	.PostItembottom{
+		width: 100%;
+    	height: 39px;
+	    background: #fff;
+	    border-top: 1px solid #f8f8f8;
+	    border-radius: 0 0 10px 10px;
+	}
+}

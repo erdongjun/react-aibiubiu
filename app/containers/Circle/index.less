@@ -1,3 +1,4 @@
+// 创建圈子
 .createcateBox{
 	width: 1000px;
     height: auto;
@@ -67,5 +68,71 @@
 	    		vertical-align: top;
 	    	}
 	    }
+	}
+}
+.circleBox{
+	width: 1000px;
+    height: auto;
+    margin: 0 auto;
+    .circleContent{
+    	margin-top: 20px;
+    	margin-bottom: 20px;
+    	.circleContentl{
+			width: 700px;
+			border-radius: 2px;
+			
+    	}
+    	.circleContentr{
+			width: 280px;
+			margin-left: 20px;
+			border-radius: 2px;
+			.CircleOwner{
+
+				background: #fff;
+				border-radius: 4px;
+				text-align: center;
+				.first{
+					height: 50px;
+					line-height: 50px;
+    				border-bottom: 1px solid #f8f8f8;
+				}
+				.second{
+					height: 50px;
+					line-height: 50px;
+				}
+				.grade{
+					width: 70px;
+					float: left;
+					border-right:1px solid #f8f8f8;
+					color: #4d4d4d;
+				}
+				.grader{
+					color: #fe7780;
+					float: left;
+					width: 200px;
+					overflow: hidden;
+				}
+				span{
+					display: inline-block;
+					cursor:pointer;
+				}
+			}
+    	}
+
+
+    }
+    
+}
+// tabS标签样式
+.ant-tabs-nav-wrap{
+	background:#fff;
+	.ant-tabs-nav .ant-tabs-tab{
+		margin-left: 30px;
+	}
+	.ant-tabs-nav .ant-tabs-tab-active,.ant-tabs-nav .ant-tabs-tab:hover{
+		color: #fe6e78;
+	}
+	.ant-tabs-ink-bar{
+		background: #fe6e78;
 	}
 }
