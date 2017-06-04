@@ -3,18 +3,18 @@ import * as Msg from '../components/Common/Common'
 
 import API from '../fetch/fetch';
 
-export const HOT = 'HOT';
+export const CIRCLE = 'CIRCLE';
 
-export const gethot = (data) => ({
-	    type: HOT,
+export const getcircle = (data) => ({
+	    type: CIRCLE,
 	    ...data
 	})
 
-export const fetchHot = () =>{
+export const fetchCircle = (circleid) =>{
 	return (dispatch, getState) => {
-		API.getFetch('/api/Circle/hot')
+		API.getFetch('/api/Circle/index',{id:circleid})
 		.then((data)=>{
-			dispatch(gethot(data));
+			dispatch(getcircle(data));
 			if(data.state == 0){
 				Msg.showSuccess(data.msg)
 			}else {
@@ -24,7 +24,6 @@ export const fetchHot = () =>{
 		.catch((err)=>{Msg.showError(err)});
 	}
 }
-
 
 
 

@@ -25,7 +25,7 @@ class HotList extends Component{
         <div className="hotwrap">
           <div className="hotlist">
             {list.map((item,index)=>{
-             let id = item.cateid;
+             let id = item.id;
               return(
                 <div key={index} className="hotitem"  onClick={()=>{this.handleJump(id)}}>
                   <img  className="hotimg" src={item.logo?'http://www.aibiubiu.com'+item.logo:'http://www.aibiubiu.com/Public/Uploads/2017-05-31/592e75b1e7bdd.jpg'} />

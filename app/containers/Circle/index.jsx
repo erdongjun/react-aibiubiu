@@ -14,6 +14,10 @@ import PostItem from './subpage/PostItem'
 import Rranking from './../../components/Common/Rranking'
 
 
+import { 
+    fetchCircle,
+} from '../../actions/circle';
+
 class Circle extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -24,6 +28,13 @@ class Circle extends React.Component {
         this.handlechange = this.handlechange.bind(this);
         this.onChangePage = this.onChangePage.bind(this);
     }
+
+    componentDidMount() {
+        if(!this.props.circle.data||!this.props.circle.state==0||this.props.circle.data.circle.id!=this.props.params.circleid){
+            this.props.dispatch(fetchCircle(this.props.params.circleid))
+        }
+    }
+
     handlechange(key){
         console.log(key)
     }
@@ -33,14 +44,25 @@ class Circle extends React.Component {
             current: page,
         });
     }
+
+    
     render() {
+        const circle = this.props.circle;
         var list  = new Array(10);
         list.fill(1);
-        console.log(this.props.params.circleid)
-        
+
+        if(circle.state!=0||this.props.circle.data.circle.id!=this.props.params.circleid){
+            return(
+                <div className='SpinWrap'>
+                    <Spin  size="large"/>
+                </div>
+            )
+        }
+        let info = circle.data.circle
+
         return (
             <div className='circleBox'>
-                <CircleHead />
+                <CircleHead info ={info}/>
                 <div className='circleContent clearfix'>
                     <div className='circleContentl fl'>
                         <Tabs defaultActiveKey="1" onChange={this.handlechange}>
@@ -65,7 +87,7 @@ class Circle extends React.Component {
                         <div className='CircleOwner'>
                             <div className='first'>
                                 <span className='grade'>圈主</span>
-                                <span className='grader'>xifan</span>
+                                <span className='grader' data-id={info.userid}>{info.username}</span>
                             </div>
                             <div  className='second'>
                                 <span className='grade'>圈管</span>
@@ -83,5 +105,13 @@ class Circle extends React.Component {
 
 
 
+function mapStateToProps(state,ownProps){
+  return {
 
-export default Circle;
+    circle:state.circle
+
+  }
+}
+
+export default connect(mapStateToProps)(Circle);
+

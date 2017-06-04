@@ -6,21 +6,22 @@ class CircleHead extends React.Component {
         super(props, context);
     }
     render() {
+        let info = this.props.info
         return (
             <div className='CircleHeadBox'>
-                <img src='http://www-static.diyidan.net/static/image/part00.jpg?v=9e9164f43a177a932e10207140b47f8e' className='bgimg' />
+                <img src={info.bgurl?'http://www.aibiubiu.com/'+info.bgurl: 'http://www-static.diyidan.net/static/image/part00.jpg?v=9e9164f43a177a932e10207140b47f8e'} className='bgimg' />
                 <div className='content '>
                     <div className='circlelogo'>
-                        <img src="http://image.diyidan.net/user/2017/4/24/U8hklQfLuTDsw6dR.jpg!tiny" alt=""/>
+                        <img src={info.logo?'http://www.aibiubiu.com/'+info.logo: 'http://www-static.diyidan.net/static/image/part00.jpg?v=9e9164f43a177a932e10207140b47f8e'} alt=""/>
                     </div>
-                    <p className='circlename'>cos</p>
-                    <p className='circleinfo'>欢迎cosplay同好，打破次元墙～！</p>
+                    <p className='circlename'>{info.name}</p>
+                    <p className='circleinfo'>{info.info}</p>
                     <p className='circlenum'>
-                        <span>成员:2222222</span>
-                        <span>帖子:2222222</span>
+                        <span>成员:{info.members}</span>
+                        <span>帖子:{info.posts}</span>
                     </p>
                     <p className='circlesort'>
-                        <span><i className='iconfont icon-mcui'></i>NO.9999</span>
+                        <span><i className='iconfont icon-mcui'></i>NO.{info.vip}</span>
                         <span className='active'><i className='iconfont icon-add'></i>加入</span>
                     </p>
                 </div>
