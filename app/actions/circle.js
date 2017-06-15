@@ -24,6 +24,15 @@ export const fetchCircle = (circleid) =>{
 		.catch((err)=>{Msg.showError(err)});
 	}
 }
+export const fetchCreactPost = (parms,callback) =>{
+	return (dispatch, getState) => {
+		API.postFetch('/api/Circle/post',parms)
+		.then((data)=>{
+			callback(data)
+    	})
+		.catch((err)=>{Msg.showError(err)});
+	}
+}
 
 
 

@@ -60,7 +60,7 @@ class CreateCate extends React.Component {
 
     handlePreview (file) {
         this.setState({
-            previewImage: file.url || file.thumbUrl,
+            previewImage:'http://www.aibiubiu.com'+file.url || 'http://www.aibiubiu.com'+file.thumbUrl,
             previewVisible: true,
         });
     }
@@ -100,6 +100,11 @@ class CreateCate extends React.Component {
     } 
 
     handleCreateCircle(){
+         if(!this.props.userinfo.data||!this.props.userinfo.data.id){
+            showError('请登录后申请创建!');
+            return;
+         };
+
         let refs = this.refs;
         var that = this;
         let circlename = refs.circlename.value.trim();
@@ -143,7 +148,7 @@ class CreateCate extends React.Component {
     }
     createSuc(){
         console.log('success callback');
-        hashHistory.push({pathname:'/'})
+        hashHistory.push({pathname:'/hot'})
     }
     render() {
         const catelist = this.props.catelist;

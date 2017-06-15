@@ -3,19 +3,17 @@ import { Link ,hashHistory} from 'react-router';
 import {connect} from 'react-redux';
 import { Spin,Tabs,Pagination} from 'antd';
 const TabPane = Tabs.TabPane;
-
-
 import {showSuccess,showError} from '../../components/Common/Common';
 import './index.less';
-
 import CircleHead from './subpage/CircleHead'
 import CircleContent from './subpage/CircleContent'
 import PostItem from './subpage/PostItem'
 import Rranking from './../../components/Common/Rranking'
-
+import Editor from './../../components/Editor/index'
 
 import { 
     fetchCircle,
+    fetchCreactPost
 } from '../../actions/circle';
 
 class Circle extends React.Component {
@@ -23,15 +21,52 @@ class Circle extends React.Component {
         super(props, context);
         this.state={
              current: 1,
+             fileList:[]
         }
-
         this.handlechange = this.handlechange.bind(this);
         this.onChangePage = this.onChangePage.bind(this);
+        this.handleImgChange = this.handleImgChange.bind(this);
+        this.handleCreactPost = this.handleCreactPost.bind(this);
     }
 
     componentDidMount() {
         if(!this.props.circle.data||!this.props.circle.state==0||this.props.circle.data.circle.id!=this.props.params.circleid){
             this.props.dispatch(fetchCircle(this.props.params.circleid))
+        }
+    }
+    handleImgChange({fileList}){
+        var fileList = fileList.map((file) => {
+          if (file.response) {
+            file.url = file.response.data.url;
+          }
+          return file;
+        });
+        fileList = fileList.filter((file) => {
+          if (file.response) {
+            return file.response.state == 0;
+          }
+          return true;
+        });
+        this.setState({ fileList });
+        console.log(fileList)
+    } 
+    handleCreactPost(parms){
+        let circleid = this.props.params.circleid;
+        if(!this.props.userinfo.data && !this.props.userinfo.data.id){
+            showError('请登录后发帖!')
+            return;
+        }
+        let userid =  this.props.userinfo.data.id;
+
+        let params = {userid:userid,circleid:circleid,...parms};
+        console.log('parms',params);
+        this.props.dispatch(fetchCreactPost(params,this.postCb.bind(this)));
+    }
+    postCb(data){
+        if(data.state==0){
+            showSuccess('发表成功!')
+        }else {
+            showError(data.msg)            
         }
     }
 
@@ -44,12 +79,10 @@ class Circle extends React.Component {
             current: page,
         });
     }
-
     
     render() {
         const circle = this.props.circle;
-        var list  = new Array(10);
-        list.fill(1);
+        
 
         if(circle.state!=0||this.props.circle.data.circle.id!=this.props.params.circleid){
             return(
@@ -58,18 +91,20 @@ class Circle extends React.Component {
                 </div>
             )
         }
-        let info = circle.data.circle
+        let info = circle.data.circle;
+        let total = circle.data.total;
+        let list = circle.data.list;
 
         return (
             <div className='circleBox'>
-                <CircleHead info ={info}/>
+                <CircleHead info ={info} total={total}/>
                 <div className='circleContent clearfix'>
                     <div className='circleContentl fl'>
                         <Tabs defaultActiveKey="1" onChange={this.handlechange}>
                             <TabPane tab="全部" key="1">
                                 {list.map((item,index)=>{
                                     return(
-                                        <PostItem key={index} />
+                                        <PostItem key={index} item={item}/>
                                         )
                                 })}
                             <Pagination current={this.state.current} pageSize={20} onChange={this.onChangePage} total={50} />
@@ -82,6 +117,7 @@ class Circle extends React.Component {
                                 })}
                             </TabPane>
                         </Tabs>
+                        <Editor fileList={this.state.fileList} ParentImgChange={this.handleImgChange} handleCreactPost={this.handleCreactPost}/>
                     </div>
                     <div className='circleContentr fl'>
                         <div className='CircleOwner'>
@@ -107,9 +143,8 @@ class Circle extends React.Component {
 
 function mapStateToProps(state,ownProps){
   return {
-
-    circle:state.circle
-
+    circle:state.circle,
+    userinfo:state.userinfo
   }
 }
 
