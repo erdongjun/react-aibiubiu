@@ -8,11 +8,25 @@ import { formatDate } from '../../../components/Common/Common' ;
 class PostItem extends React.Component {
     constructor(props, context) {
         super(props, context);
+        this.showImg =  this.showImg.bind(this);
+    }
+    showImg(imgurl){
+        console.log(imgurl)
+        return(
+            <img className='postimg' src= {imgurl.imgurl} />
+            )
     }
     render() {
+        let baseUrl = 'http://www.aibiubiu.com';
         let item = this.props.item;
-        console.log(parseInt(item.time)*1000)
         let time = formatDate(new Date(parseInt(item.time)*1000));
+        var firstimg='';
+        if(item.imgArr.length>0){
+            firstimg = item.imgArr[0].img;
+        }
+        let imgurl =  baseUrl+firstimg;
+
+        console.log(imgurl)
         return (
             <div className='PostItemBox'>
                 <div className='PostItemtitle'>
@@ -22,7 +36,7 @@ class PostItem extends React.Component {
                     </p>
                 </div>
                 <div className='PostItemcontent'>
-                    <img className='postimg' src="http://image.diyidan.net/post/2017/6/2/lL5n6eC8bB1bj5oA.png!webindex" alt="" />
+                    {firstimg?this.showImg({imgurl}):''}
                     <div className='info'>
                         <p className='subtitle'>{item.title}</p>
                         <p className='subinfo'>{item.content}</p>
