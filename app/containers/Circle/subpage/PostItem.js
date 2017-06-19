@@ -17,6 +17,7 @@ class PostItem extends React.Component {
             )
     }
     render() {
+
         let item = this.props.item;
         let time = formatDate(new Date(parseInt(item.time)*1000));
         var imgurl='';
@@ -41,7 +42,7 @@ class PostItem extends React.Component {
                     </div>
                 </div>
                 <div className='PostItembottom clearfix'>
-                    <Collection />
+                    <Collection handleCollect={this.props.handleCollect} handleLike={this.props.handleLike}  item = {item}/>
                 </div>
             </div>
         )

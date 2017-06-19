@@ -25,6 +25,33 @@ export const fetchPostList = (params) =>{
 	}
 }
 
+export const fetchlike = (params) =>{
+	return (dispatch, getState) => {
+		API.getFetch('/api/Post/like',params)
+		.then((data)=>{
+			if(data.state == 0){
+				Msg.showSuccess(data.msg)
+			}else {
+				Msg.showError(data.msg)
+			}
+    	})
+		.catch((err)=>{Msg.showError(err)});
+	}
+}
+export const fetchcollect = (params) =>{
+	return (dispatch, getState) => {
+		API.getFetch('/api/Post/collect',params)
+		.then((data)=>{
+			if(data.state == 0){
+				Msg.showSuccess(data.msg)
+			}else {
+				Msg.showError(data.msg)
+			}
+    	})
+		.catch((err)=>{Msg.showError(err)});
+	}
+}
+
 
 
 

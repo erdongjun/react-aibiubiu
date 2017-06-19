@@ -16,7 +16,9 @@ import {
     fetchCreactPost
 } from '../../actions/circle';
 import {
-    fetchPostList
+    fetchPostList,
+    fetchcollect,
+    fetchlike
 } from '../../actions/postlist'
 
 class Circle extends React.Component {
@@ -30,6 +32,8 @@ class Circle extends React.Component {
         this.onChangePage = this.onChangePage.bind(this);
         this.handleImgChange = this.handleImgChange.bind(this);
         this.handleCreactPost = this.handleCreactPost.bind(this);
+        this.handleLike = this.handleLike.bind(this);
+        this.handleCollect = this.handleCollect.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +41,12 @@ class Circle extends React.Component {
             this.props.dispatch(fetchCircle(this.props.params.circleid));
             this.props.dispatch(fetchPostList({id:this.props.params.circleid,limit:10,current:1}));
         }
+    }
+    handleLike(params){
+        this.props.dispatch(fetchlike(params))
+    }
+    handleCollect(params){
+        this.props.dispatch(fetchcollect(params))
     }
     handleImgChange({fileList}){
         var fileList = fileList.map((file) => {
@@ -83,9 +93,8 @@ class Circle extends React.Component {
             current: page,
         });
         let id = this.props.params.circleid;
-        let current =  this.state.current;
 
-        this.props.dispatch(fetchPostList({id:id,limit:10,current:current}));
+        this.props.dispatch(fetchPostList({id:id,limit:10,current:page}));
 
     }
     
@@ -101,6 +110,8 @@ class Circle extends React.Component {
         }
 
         let info = circle.data.circle;
+        let hotlist = circle.data.hotlist;
+        let hotall = circle.data.hotall;
         let list = postlist.data.list;
         let total = parseInt(info.posts);
         return (
@@ -112,15 +123,15 @@ class Circle extends React.Component {
                             <TabPane tab="全部" key="1">
                                 {list.map((item,index)=>{
                                     return(
-                                        <PostItem key={index} item={item}/>
+                                        <PostItem handleCollect={this.handleCollect} handleLike={this.handleLike} key={index} item={item}/>
                                         )
                                 })}
-                            <Pagination current={this.state.current} pageSize={10} onChange={this.onChangePage} total={total} />
+                                {total<11?'':<Pagination current={this.state.current} pageSize={10} onChange={this.onChangePage} total={total} />}
                             </TabPane>
                             <TabPane tab="热门" key="2">
-                                {list.map((item,index)=>{
+                                 {hotlist.map((item,index)=>{
                                     return(
-                                        <PostItem key={index} />
+                                        <PostItem handleCollect={this.handleCollect} handleLike={this.handleLike}  key={index} item={item}/>
                                         )
                                 })}
                             </TabPane>
@@ -138,7 +149,7 @@ class Circle extends React.Component {
                                 <span className='grader'><em>xifan</em> <em>xifan</em></span>
                             </div>
                         </div>
-                        <Rranking />
+                        <Rranking hotall={hotall} />
                     </div>
 
                 </div>

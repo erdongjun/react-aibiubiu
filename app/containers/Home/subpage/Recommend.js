@@ -23,7 +23,7 @@ class Recommend extends React.Component{
 				<div className='title'>
 					<div className='tit_l'>
 						<img className='relogo' src="http://www-static.diyidan.net/static/image/crown_05.png" alt=""/>
-						<span className='subtitle'>视频推荐</span>
+						<span className='subtitle'>专区推荐</span>
 						<span className='desc'>弹妹的精品2视频推荐哦~</span>
 						<span className='more'>换一批<img className='rateicon' src="//www-static.diyidan.net/static/image/crown_02.png?v=768aad677c40e9c0b94466f1d3cf8331" alt=""/></span>
 					</div>
