@@ -15,6 +15,9 @@ import {
     fetchCircle,
     fetchCreactPost
 } from '../../actions/circle';
+import {
+    fetchPostList
+} from '../../actions/postlist'
 
 class Circle extends React.Component {
     constructor(props, context) {
@@ -31,7 +34,8 @@ class Circle extends React.Component {
 
     componentDidMount() {
         if(!this.props.circle.data||!this.props.circle.state==0||this.props.circle.data.circle.id!=this.props.params.circleid){
-            this.props.dispatch(fetchCircle(this.props.params.circleid))
+            this.props.dispatch(fetchCircle(this.props.params.circleid));
+            this.props.dispatch(fetchPostList({id:this.props.params.circleid,limit:10,current:1}));
         }
     }
     handleImgChange({fileList}){
@@ -78,26 +82,30 @@ class Circle extends React.Component {
         this.setState({
             current: page,
         });
+        let id = this.props.params.circleid;
+        let current =  this.state.current;
+
+        this.props.dispatch(fetchPostList({id:id,limit:10,current:current}));
+
     }
     
     render() {
         const circle = this.props.circle;
-        
-
-        if(circle.state!=0||this.props.circle.data.circle.id!=this.props.params.circleid){
+        const postlist = this.props.postlist;
+        if(postlist.state != 0 || circle.state!=0||this.props.circle.data.circle.id!=this.props.params.circleid){
             return(
                 <div className='SpinWrap'>
                     <Spin  size="large"/>
                 </div>
             )
         }
-        let info = circle.data.circle;
-        let total = circle.data.total;
-        let list = circle.data.list;
 
+        let info = circle.data.circle;
+        let list = postlist.data.list;
+        let total = parseInt(info.posts);
         return (
             <div className='circleBox'>
-                <CircleHead info ={info} total={total}/>
+                <CircleHead info ={info} />
                 <div className='circleContent clearfix'>
                     <div className='circleContentl fl'>
                         <Tabs defaultActiveKey="1" onChange={this.handlechange}>
@@ -107,7 +115,7 @@ class Circle extends React.Component {
                                         <PostItem key={index} item={item}/>
                                         )
                                 })}
-                            <Pagination current={this.state.current} pageSize={20} onChange={this.onChangePage} total={50} />
+                            <Pagination current={this.state.current} pageSize={10} onChange={this.onChangePage} total={total} />
                             </TabPane>
                             <TabPane tab="热门" key="2">
                                 {list.map((item,index)=>{
@@ -144,7 +152,8 @@ class Circle extends React.Component {
 function mapStateToProps(state,ownProps){
   return {
     circle:state.circle,
-    userinfo:state.userinfo
+    userinfo:state.userinfo,
+    postlist:state.postlist
   }
 }
 

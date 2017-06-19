@@ -11,22 +11,20 @@ class PostItem extends React.Component {
         this.showImg =  this.showImg.bind(this);
     }
     showImg(imgurl){
-        console.log(imgurl)
+        // console.log(imgurl)
         return(
-            <img className='postimg' src= {imgurl.imgurl} />
+            <img className='postimg' src= {imgurl} />
             )
     }
     render() {
-        let baseUrl = 'http://www.aibiubiu.com';
         let item = this.props.item;
         let time = formatDate(new Date(parseInt(item.time)*1000));
-        var firstimg='';
+        var imgurl='';
         if(item.imgArr.length>0){
-            firstimg = item.imgArr[0].img;
+            imgurl = item.imgArr[0].img;
         }
-        let imgurl =  baseUrl+firstimg;
 
-        console.log(imgurl)
+        // console.log(imgurl)
         return (
             <div className='PostItemBox'>
                 <div className='PostItemtitle'>
@@ -36,7 +34,7 @@ class PostItem extends React.Component {
                     </p>
                 </div>
                 <div className='PostItemcontent'>
-                    {firstimg?this.showImg({imgurl}):''}
+                    {imgurl?this.showImg(imgurl):''}
                     <div className='info'>
                         <p className='subtitle'>{item.title}</p>
                         <p className='subinfo'>{item.content}</p>
